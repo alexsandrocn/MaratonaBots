@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaratonaBots", "MaratonaBots\MaratonaBots.csproj", "{CA489C5A-EF22-4F10-8A9F-09198CF69FD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{2295B1FE-4C2A-4D2E-927D-E6D8BE9B4869}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA489C5A-EF22-4F10-8A9F-09198CF69FD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA489C5A-EF22-4F10-8A9F-09198CF69FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA489C5A-EF22-4F10-8A9F-09198CF69FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA489C5A-EF22-4F10-8A9F-09198CF69FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2295B1FE-4C2A-4D2E-927D-E6D8BE9B4869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2295B1FE-4C2A-4D2E-927D-E6D8BE9B4869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2295B1FE-4C2A-4D2E-927D-E6D8BE9B4869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2295B1FE-4C2A-4D2E-927D-E6D8BE9B4869}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {178086B2-0C44-4ACF-860E-FF4EDC16D728}
+	EndGlobalSection
+EndGlobal
