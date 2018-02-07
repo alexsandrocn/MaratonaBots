@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Luis;
 using Microsoft.Bot.Builder.Luis.Models;
+using Newtonsoft.Json;
 
 namespace MaratonaBots.Dialogs
 {
@@ -33,8 +35,27 @@ namespace MaratonaBots.Dialogs
         public async Task Cotacao(IDialogContext context, LuisResult result)
         {
             var moedas = result.Entities?.Select(e => e.Entity);
-            
-            await context.PostAsync($"Eu farei uma cotação para moedas {string.Join(",", moedas.ToArray())}");
+            var filtro = string.Join(",", moedas.ToArray());
+            var endpoint = $"http://api-cotacoes-maratona-bots1.azurewebsites.net/api/Cotacoes/USD,EUR";
+
+            await context.PostAsync("Aguarde um momento enquanto eu obtenho os valores...");
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync(endpoint);
+                if (!response.IsSuccessStatusCode)
+                {
+                    await context.PostAsync("Ocorreu algum erro... tente mais tarde");
+                    return;
+                }
+                else
+                {
+                    var json = await response.Content.ReadAsStringAsync();
+                    var resultado = JsonConvert.DeserializeObject<Models.Cotacao[]>(json);
+                    var cotacoes = resultado.Select(c => $"{c.Nome}: {c.Valor}");
+                    await context.PostAsync($"{string.Join(",", cotacoes.ToArray())}");
+                }
+            }
         }
     }
 }   
