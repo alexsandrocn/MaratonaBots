@@ -25,6 +25,8 @@ namespace MaratonaBots.Formulario
         {
             var form = new FormBuilder<Pedido>();
             form.Configuration.DefaultPrompt.ChoiceStyle = ChoiceStyleOptions.Buttons;
+            form.Configuration.Yes = new string[] { "sim", "yes", "s", "y", "yep" };
+            form.Configuration.No = new string[] { "não", "nao", "no", "not", "n" };
             form.Message("Olá, seja bem vindo! Sera um prazer atende-lo!");
             form.OnCompletion(async (context, pedido) => {
                 //Salvar na base de dados
@@ -38,24 +40,60 @@ namespace MaratonaBots.Formulario
 
     }
 
+    [Describe("Tipo de Entrega")]
     public enum TipoEntrega
     {
+        [Terms("Retirar No Local", "Passo ai", "Eu pego", "Retiro ai", "retirar")]
+        [Describe("Retirar No Local")]
         RetirarNoLocal = 1,
+
+        [Terms("Motoboy", "Motoca", "Cachorro Loco", "Entrega", "Em casa")]
+        [Describe("Motoboy")]
         Motoboy
     }
 
+    [Describe("Salgados")]
     public enum Salgadinhos
     {
+        [Terms("Esfirra", "Isfirra", "Esfira", "Isfira", "i")]
+        [Describe("Esfirra")]
         Esfirra = 1,
-        Quibe, 
+
+        [Terms("Quibe", "Kibe", "k", "q")]
+        [Describe("Quibe")]
+        Quibe,
+
+        [Terms("Coxinha", "Cochinha", "Coxa", "c")]
+        [Describe("Coxinha")]
         Coxinha
     }
 
+    [Describe("Bebidas")]
     public enum Bebidas
     {
+        [Terms("Refrigerante", "refri", "r")]
+        [Describe("Refrigerante")]
         Refrigerante = 1,
+
+        [Terms("Água", "agua", "h2o", "a")]
+        [Describe("Água")]
         Agua,
+
+        [Terms("Suco", "s")]
+        [Describe("Suco")]
         Suco
+    }
+
+    [Describe("CPF na Nota")]
+    public enum CPFNaNota
+    {
+        [Terms("Sim", "s", "yep")]
+        [Describe("Sim")]
+        Sim = 1,
+
+        [Terms("Não", "n", "nao")]
+        [Describe("Não")]
+        Nao
     }
 
 }

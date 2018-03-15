@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System;
 using Microsoft.Bot.Builder.FormFlow;
 using System.Threading;
 
@@ -31,15 +32,13 @@ namespace MaratonaBots
                 if (activity.MembersAdded != null && activity.MembersAdded.Any())
                 {
                     foreach (var member in activity.MembersAdded)
-                    { 
-                        if(member.Id != activity.Recipient.Id)
+                    {
+                        if (member.Id != activity.Recipient.Id)
                         {
                             await this.SendConversation(activity);
                         }
-
                     }
                 }
-
             }
             else
             {
@@ -51,8 +50,8 @@ namespace MaratonaBots
 
         private async Task SendConversation(Activity activity)
         {
-            await Conversation.SendAsync(activity, () => Chain.From(() => FormDialog.FromForm(() => Formulario.Pedido.BuildForm(), FormOptions.PromptFieldsWithValues)));
-
+            // await Conversation.SendAsync(activity, () => Chain.From(() => FormDialog.FromForm(() => Formulario.Pedido.BuildForm(), FormOptions.PromptFieldsWithValues)));
+            await Conversation.SendAsync(activity, () => new Dialogs.CotacaoDialog());
         }
 
         private Activity HandleSystemMessage(Activity message)
